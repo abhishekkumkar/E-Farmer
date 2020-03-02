@@ -1,0 +1,283 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <!-- Title -->
+  <title>E-Farm - Farm Services &amp; Organic Food Store Template | Home</title>
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'img/core-img/favicon.ico'%}">
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="{% static 'style.css'%}">
+  <style type="text/css">
+    .asteriskField {
+      display: none;
+    }
+
+    form .alert ul li {
+      list-style: none;
+    }
+
+    form .alert ul {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+ <!-- Preloader -->
+ <div class="preloader d-flex align-items-center justify-content-center">
+  <div class="spinner"></div>
+</div>
+
+<!-- ##### Header Area Start ##### -->
+<header class="header-area">
+  <!-- Top Header Area -->
+  <div class="top-header-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="top-header-content d-flex align-items-center justify-content-between">
+            <!-- Top Header Content -->
+            <div class="top-header-meta">
+              <p>Welcome to <span>E-Farm</span>, we hope you will enjoy our products and have good experience</p>
+            </div>
+            <!-- Top Header Content -->
+            <div class="top-header-meta text-right">
+              <a href="#" data-toggle="tooltip" data-placement="bottom" title="vit.developers@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: vit.developers@gmail.com</span></a>
+              <a href="#" data-toggle="tooltip" data-placement="bottom" title="+ 9876543210"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 9876543210</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar Area -->
+  <div class="famie-main-menu">
+    <div class="classy-nav-container breakpoint-off">
+      <div class="container">
+        <!-- Menu -->
+        <nav class="classy-navbar justify-content-between" id="famieNav">
+          <!-- Nav Brand -->
+          <a href="/" class="nav-brand">E-FARM</a>
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span></span><span></span><span></span></span>
+          </div>
+          <!-- Menu -->
+          <div class="classy-menu">
+            <!-- Close Button -->
+            <div class="classycloseIcon">
+              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+            <!-- Navbar Start -->
+            <div class="classynav">
+              <ul>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                {% if  user.is_authenticated %} 
+                  {% ifequal type 'seller' %}
+                  <li><a href="#">Products</a>                  
+                  <ul class="dropdown">
+                    <li><a href="">View Products</a></li>
+                    <li><a href="/add/product">Add products</a></li>
+                  </ul>
+                  {% else %}
+                  <li><a href="/products">Our-product</a></li>
+                  {% endifequal %}  
+                  {% else %}
+                  <li><a href="/products">Our-product</a></li>
+                  {% endif %}
+                </li>
+
+                
+                <li><a href="/farming-practice">Farming Practice</a></li>
+                <li><a href="/news">News</a></li>
+                <li><a href="/contact">Contact</a></li>
+                {% if not user.is_authenticated %}
+                <li><a href="#">Login</a>
+                  <ul class="dropdown">
+                    <li><a href="/farmer/login">Farmer</a></li>
+                    <li><a href="/seller/login">Seller</a></li>
+                    <li><a href="/worker/login">Worker</a></li>
+                    <li><a href="/transport/login">Transport</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Signup</a>
+                  <ul class="dropdown">
+                    <li><a href="/signup/farmer">Farmer</a></li>
+                    <li><a href="/signup/seller">Seller</a></li>
+                    <li><a href="/signup/worker">Worker</a></li>
+                    <li><a href="/signup/transport">Transport</a></li>
+                  </ul>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li><a href="#">Profile</a>
+                  <ul class="dropdown">
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </li>
+                {% endif %}
+                
+              </ul>
+              <!-- Search Icon -->
+              <!-- Cart Icon -->
+            </div>
+            <!-- Navbar End -->
+          </div>
+        </nav>
+
+
+        <!-- Search Form -->
+        <div class="search-form">
+          <form action="#" method="get">
+            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+            <button type="submit" class="d-none"></button>
+          </form>
+          <!-- Close Icon -->
+          <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+    {% block content %}
+    {% endblock %}
+ <!-- ##### Footer Area Start ##### -->
+ <footer class="footer-area">
+  <!-- Main Footer Area -->
+  <div class="main-footer bg-img bg-overlay section-padding-80-0" style="background-image: url( {% static 'img/bg-img/3.jpg'%}  );">
+    <div class="container">
+      <div class="row">
+
+        <!-- Single Footer Widget Area -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-widget mb-80">
+            <a href="#" class="foo-logo d-block mb-30"><h1>E-FARM</h1></a>
+            <p>Lorem ipsum dolor sit amet, consecte stare adipiscing elit. In act honcus risus atiner Pellentesque risus.</p>
+            <div class="contact-info">
+              <p><i class="fa fa-map-pin" aria-hidden="true"></i><span>VIT CHENNAI VANDLUR-KELAMBAKKAM ROAD 600127</span></p>
+              <p><i class="fa fa-envelope" aria-hidden="true"></i><span>vit.develovers@gmail.com</span></p>
+              <p><i class="fa fa-phone" aria-hidden="true"></i><span>+91 98765 43210 </span></p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Single Footer Widget Area -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-widget mb-80">
+            <h5 class="widget-title">RECENT NEWS</h5>
+
+            <!-- Single Recent News Start -->
+            <div class="single-recent-blog d-flex align-items-center">
+              <div class="post-thumbnail">
+                <img src="{% static 'img/bg-img/4.jpg'%}" alt="">
+              </div>
+              <div class="post-content">
+                <a href="#" class="post-title">WA’s largest farming business on the market</a>
+                <div class="post-date">15 Sep 2019</div>
+              </div>
+            </div>
+
+            <!-- Single Recent News Start -->
+            <div class="single-recent-blog d-flex align-items-center">
+              <div class="post-thumbnail">
+                <img src="{% static 'img/bg-img/5.jpg'%}" alt="">
+              </div>
+              <div class="post-content">
+                <a href="#" class="post-title">Beef retail prices hit a record</a>
+                <div class="post-date">15 Sep 2019</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Single Footer Widget Area -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-widget mb-80">
+            <h5 class="widget-title">STAY CONNECTED</h5>
+            <!-- Footer Social Info -->
+            <div class="footer-social-info">
+              <a href="#">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <span>Facebook</span>
+              </a>
+              <a href="#">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <span>Twitter</span>
+              </a>
+              <a href="#">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                <span>Pinterest</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Copywrite Area  -->
+  <div class="copywrite-area">
+    <div class="container">
+      <div class="copywrite-text">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+          </div>
+          <div class="col-md-6">
+            <div class="footer-nav">
+              <nav>
+                <ul>
+
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="{%static 'js/jquery.min.js'%}"></script>
+<!-- Popper js -->
+<script src="{%static 'js/popper.min.js'%}"></script>
+<!-- Bootstrap js -->
+<script src="{%static 'js/bootstrap.min.js'%}"></script>
+<!-- Owl Carousel js -->
+<script src="{%static 'js/owl.carousel.min.js'%}"></script>
+<!-- Classynav -->
+<script src="{%static 'js/classynav.js'%}"></script>
+<!-- Wow js -->
+<script src="{%static 'js/wow.min.js'%}"></script>
+<!-- Sticky js -->
+<script src="{%static 'js/jquery.sticky.js'%}"></script>
+<!-- Magnific Popup js -->
+<script src="{%static 'js/jquery.magnific-popup.min.js'%}"></script>
+<!-- Scrollup js -->
+<script src="{%static 'js/jquery.scrollup.min.js'%}"></script>
+<!-- Jarallax js -->
+<script src="{%static 'js/jarallax.min.js'%}"></script>
+<!-- Jarallax Video js -->
+<script src="{%static 'js/jarallax-video.min.js'%}"></script>
+<!-- Active js -->
+<script src="{%static 'js/active.js'%}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
